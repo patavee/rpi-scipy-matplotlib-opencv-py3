@@ -3,17 +3,6 @@
 FROM patavee/rpi-scipy-matplotlib-py3
 MAINTAINER Patavee Charnvivit <patavee@gmail.com>
 
-# build and install libtbb-dev because this lib does not available in RPi
-# see http://raspberrypi.stackexchange.com/questions/22864/how-to-install-libtbb-dev-in-raspberry-pi
-# Note that the folder name tbb43_20150611oss/build/linux_armv7_gcc_cc4.9.2_libc2.19_kernel4.4.39_release
-# might be changed in the future, need to check
-RUN wget https://www.threadingbuildingblocks.org/sites/default/files/software_releases/source/tbb43_20150611oss_src.tgz && \
-    tar xvf tbb43_20150611oss_src.tgz && \
-    cd tbb43_20150611oss && \
-    make tbb CXXFLAGS="-DTBB_USE_GCC_BUILTINS=1 -D__TBB_64BIT_ATOMICS=0" && \
-    cd ~/tbb43_20150611oss/build/linux_armv7_gcc_cc4.9.2_libc2.19_kernel4.4.39_release && \
-    . ./tbbvars.sh
-
 # install dependencies
 RUN apt-get update && apt-get install -y \
     wget \
@@ -64,7 +53,8 @@ RUN cd /tmp && \
     cd opencv-3.2.0/build && \
     cmake \
     -D CMAKE_BUILD_TYPE=RELEASE \
-    -D BUILD_opencv_python2=YES \
+    -D BUILD_opencv_python2=NO \
+    -D WITH_TBB=NO \
     -D BUILD_JPEG=YES \
     -D WITH_WEBP=YES \
     -D WITH_OPENEXR=YES \ 
