@@ -11,7 +11,7 @@ RUN wget https://www.threadingbuildingblocks.org/sites/default/files/software_re
     tar xvf tbb43_20150611oss_src.tgz && \
     cd tbb43_20150611oss && \
     make tbb CXXFLAGS="-DTBB_USE_GCC_BUILTINS=1 -D__TBB_64BIT_ATOMICS=0" && \
-    cd ~/tbb43_20150611oss/build/linux_armv7_gcc_cc4.9.2_libc2.19_kernel4.4.39_release
+    cd ~/tbb43_20150611oss/build/linux_armv7_gcc_cc4.9.2_libc2.19_kernel4.4.39_release && \
     source tbbvars.sh
 
 # install dependencies
