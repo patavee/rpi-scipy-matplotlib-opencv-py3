@@ -54,8 +54,8 @@ RUN cd /tmp && \
     cmake \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_opencv_python2=NO \
-    -D BUILD_TBB=NO \
-    -D WITH_TBB=NO \
+    -D BUILD_TBB=YES \
+    -D WITH_TBB=YES \
     -D BUILD_JPEG=YES \
     -D WITH_WEBP=YES \
     -D WITH_OPENEXR=YES \ 
