@@ -35,7 +35,6 @@ RUN apt-get update && apt-get install -y \
     libxine2-dev \
     v4l-utils \
     libeigen3-dev \
-    libtbb-dev \
     && \
     rm -rf /var/lib/apt/lists/*
 
@@ -45,15 +44,16 @@ ENV CXX /usr/bin/clang++
 
 # compile
 RUN cd /tmp && \ 
-    wget -q -O opencv.zip https://github.com/Itseez/opencv/archive/3.1.0.zip && \
+    wget -q -O opencv.zip https://github.com/Itseez/opencv/archive/3.2.0.zip && \
     unzip -q opencv.zip && \
-    wget -q -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.1.0.zip && \
+    wget -q -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.2.0.zip && \
     unzip -q opencv_contrib.zip && \
-    mkdir opencv-3.1.0/build && \
-    cd opencv-3.1.0/build && \
+    mkdir opencv-3.2.0/build && \
+    cd opencv-3.2.0/build && \
     cmake \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_opencv_python2=NO \
+    -D WITH_TBB=NO \
     -D BUILD_JPEG=YES \
     -D WITH_WEBP=YES \
     -D WITH_OPENEXR=YES \ 
